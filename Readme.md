@@ -8,46 +8,61 @@ The schema is built to support a range of functionalities, including course enro
 Database Design Philosophy
 The design adheres to the principles of database normalization, specifically targeting Third Normal Form (3NF) to minimize data redundancy and prevent anomalies. Key design decisions include:
 
-Primary Keys: Each table has a unique primary key to ensure every record can be uniquely identified.
+*Primary Keys*: Each table has a unique primary key to ensure every record can be uniquely identified.
 
-Foreign Keys: Relationships are enforced using foreign keys, guaranteeing referential integrity and preventing orphaned records.
+*Foreign Keys*: Relationships are enforced using foreign keys, guaranteeing referential integrity and preventing orphaned records.
 
-Junction Tables: A many-to-many relationship between students and courses is handled via the Enrollments table. Similarly, the relationship between students and assignments is managed by the Submissions table. This approach is fundamental to a clean, scalable design.
+*Junction Tables*: A many-to-many relationship between students and courses is handled via the Enrollments table. Similarly, the relationship between students and assignments is managed by the Submissions table. This approach is fundamental to a clean, scalable design.
 
-Schema Overview
+**Schema Overview**
 The database is composed of the following tables:
 
-Instructors: Stores information about the content creators.
+*Users*: A unified table for both students and instructors, ensuring a single source of truth for user data.
 
-Students: Stores information about the learners.
+*Instructors*: Holds role-specific information for instructors.
 
-Courses: The core content entity, linked to a specific Instructor.
+*Students*: Holds role-specific information for students.
 
-Enrollments: A junction table linking Students to Courses, tracking EnrollmentDate and Progress.
+*Courses*: The core content entity, linked to a specific Instructor.
 
-Lessons: Structures the content within a Course.
+*Enrollments*: A junction table linking Students to Courses, tracking EnrollmentDate and Progress.
+
+*Lessons*: Structures the content within a Course, now designed to support various content types.
 
 Assignments: Manages coursework for a Course.
 
-Submissions: A junction table linking Students to Assignments, tracking submission details and grades.
+*Submissions*: A junction table linking Students to Assignments, tracking submission details and grades.
 
-Technical Stack
+**Technical Stack**
 Database: MySQL
 
 Setup and Usage
-To set up this database, follow these steps:
+To set up this database locally, follow these steps:
 
-Ensure you have a MySQL server and client (like MySQL Workbench) installed.
+Prerequisites
+Ensure you have a MySQL server running on your machine. You can install it from mysql.com. A client like MySQL Workbench, DBeaver, or the command-line client is also required.
 
-Open the answers.sql file provided in this repository.
+Get the SQL File
+Locate the answers.sql file provided in this repository.
 
-Execute the entire script. This will drop the database if it already exists, create a new one named ed_tech_db, and then create all the necessary tables with their respective constraints.
+Execute the Script
+Using MySQL Workbench:
+Open MySQL Workbench and connect to your local server.
 
-The database is now ready for use by your application.
+Click File -> Open SQL Script and navigate to the answers.sql file.
 
-Potential Future Enhancements
-Add a Reviews table to allow students to leave feedback on Courses.
+With the script open, click the lightning bolt icon (Execute) to run the entire script.
 
-Implement a user authentication system, possibly integrating with a separate Users table that links to both Instructors and Students.
+**Using Command Line**:
+Open your terminal or command prompt.
 
-Expand the Lessons table to include a variety of content types (e.g., video URLs, quizzes).
+Navigate to the directory containing the answers.sql file.
+
+Run the following command, replacing [username] with your MySQL username (you will be prompted for your password):
+
+mysql -u [username] -p < answers.sql
+
+**Verification**
+The script will create the ed_tech_db database and all its tables. You can verify this in your MySQL client by checking the Schemas panel for the new database and expanding it to see the list of tables (e.g., Instructors, Students, Courses, etc.).
+
+The database is now ready for your application to connect to it.
