@@ -1,4 +1,5 @@
 **Ed-Tech Platform Database Schema**
+
 Project Objective
 This project provides a foundational database schema for a modern ed-tech platform. The design prioritizes scalability, data integrity, and a clear representation of the core business logic: managing the relationships between students, instructors, and course content.
 
