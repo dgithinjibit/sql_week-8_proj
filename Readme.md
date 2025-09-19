@@ -15,6 +15,7 @@ The design adheres to the principles of database normalization, specifically tar
 *Junction Tables*: A many-to-many relationship between students and courses is handled via the Enrollments table. Similarly, the relationship between students and assignments is managed by the Submissions table. This approach is fundamental to a clean, scalable design.
 
 **Schema Overview**
+
 The database is composed of the following tables:
 
 *Users*: A unified table for both students and instructors, ensuring a single source of truth for user data.
@@ -34,6 +35,7 @@ Assignments: Manages coursework for a Course.
 *Submissions*: A junction table linking Students to Assignments, tracking submission details and grades.
 
 **Technical Stack**
+
 Database: MySQL
 
 Setup and Usage
@@ -54,6 +56,7 @@ Click File -> Open SQL Script and navigate to the answers.sql file.
 With the script open, click the lightning bolt icon (Execute) to run the entire script.
 
 **Using Command Line**:
+
 Open your terminal or command prompt.
 
 Navigate to the directory containing the answers.sql file.
@@ -63,6 +66,7 @@ Run the following command, replacing [username] with your MySQL username (you wi
 mysql -u [username] -p < answers.sql
 
 **Verification**
+
 The script will create the ed_tech_db database and all its tables. You can verify this in your MySQL client by checking the Schemas panel for the new database and expanding it to see the list of tables (e.g., Instructors, Students, Courses, etc.).
 
 The database is now ready for your application to connect to it.
